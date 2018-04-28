@@ -1,0 +1,41 @@
+/**
+ *	CSS for btn-toggle
+ *
+ *	@author		Chris Finley
+ *	@version	1.0.0
+ *	@date		2018-04-27
+ */
+
+/* Remove parent padding on side displaying status dot */
+.btn-toggle:not(.right)
+{
+	padding-left:	0;
+}
+.btn-toggle.right
+{
+	padding-right:	0;
+}
+
+/* Add status dot beside inner span element */
+ .btn-toggle:not(.right) span:before
+,.btn-toggle.right span:after 
+{
+	content:		"\A";
+	font-family:	Helvetica, Arial, sans-serif;
+	display:		inline-block;
+	width:			0.8em;
+	height:			0.8em;
+	border-radius:	50%;
+	margin-left:	0.3em;
+	margin-right:	0.3em;
+	
+	/* default off state color */
+	background: #999999;
+}
+
+/* Turn status dot green when toggle is on */
+ [value="1"].btn-toggle:not(.right) span:before
+,[value="1"].btn-toggle.right span:after
+{
+	background: #00ff00;
+}

@@ -1,0 +1,27 @@
+<!-- 
+	Demo file for btn-toggle
+	version		1.0.0
+	date		2018-04-27
+-->
+<html>
+<head>
+<link href="btn-toggle.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"
+		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="></script>
+<script src="btn-toggle.js"></script>
+<script>
+$(document).ready(function()
+{
+	$(document).on('change', '.btn-toggle', function()
+	{
+		$('#status').text($(this).val() == '1' ? 'On' : 'Off');
+	});
+});
+</script>
+</head>
+<body>
+<h1>Toggle Button Test</h1>
+<button class="btn-toggle" value="0"><span>Click Me</span></button>
+<p>The button is <span id="status"> Off </span></p>
+</body>
+</html>
