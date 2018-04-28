@@ -1,6 +1,6 @@
 <!-- 
 	Demo file for btn-toggle
-	version		1.0.1
+	version		1.1.0
 	date		2018-04-27
 -->
 <html>
@@ -21,7 +21,7 @@ $(document).ready(function()
 	$('#table_test').on('change', '.btn-toggle', function()
 	{
 		var table_list = [];
-		$('#table_test .btn-toggle').each(function()
+		$('#table_test .btn-toggle').not('.btn-toggle-parent').each(function()
 		{
 			if($(this).attr('value') == 1)
 				table_list.push($(this).find('span').text());
@@ -56,8 +56,9 @@ $(document).ready(function()
 <p>The left button is <span id="button_left">On</span> and the right button is <span id="button_right">Off</span></p>
 <br>
 
-<h2>Table Row Test</h2>
-<table id="table_test" width="200px" border="1" cellpadding="0" cellspacing="0">
+<h2>Table Row Test with Parent Toggle Control</h2>
+<div id="table_test">
+<table width="200px" border="1" cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
 		<td>Users</td>
@@ -65,25 +66,28 @@ $(document).ready(function()
 	</tr>
 	</thead>
 	<tbody>
-	<tr class="btn-toggle">
+	<tr class="btn-toggle" toggle_group="users">
 		<td><span>Chris</span></td>
 		<td>Admin</td>
 	</tr>
-	<tr class="btn-toggle">
+	<tr class="btn-toggle" toggle_group="users">
 		<td><span>Dave</span></td>
 		<td>Sales</td>
 	</tr>
-	<tr class="btn-toggle">
+	<tr class="btn-toggle" toggle_group="users">
 		<td><span>Mark</span></td>
 		<td>Warehouse</td>
 	</tr>
-	<tr class="btn-toggle">
+	<tr class="btn-toggle" toggle_group="users">
 		<td><span>Steve</span></td>
 		<td>Sales</td>
 	</tr>
 	</tbody>
 </table>
+<br>
+<button class="btn-toggle btn-toggle-parent" toggle_group="users"><span>Toggle All Users</span></button>
 <p>Selected Users: <span id="table_list"> (None) </span></p>
+</div>
 <br>
 
 <h2>List Item Test</h2>
