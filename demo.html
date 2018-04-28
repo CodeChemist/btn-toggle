@@ -1,9 +1,10 @@
 <!-- 
 	Demo file for btn-toggle
-	version		1.0.0
+	version		1.0.1
 	date		2018-04-27
 -->
 <html>
+<meta charset="utf-8">
 <head>
 <link href="btn-toggle.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous"
@@ -12,16 +13,88 @@
 <script>
 $(document).ready(function()
 {
-	$(document).on('change', '.btn-toggle', function()
+	$('#button_test_left, #button_test_right ').on('change', function()
 	{
-		$('#status').text($(this).val() == '1' ? 'On' : 'Off');
+		$( '#' + $(this).prop('id').replace('_test','') ).text( $(this).attr('value') == '1' ? 'On' : 'Off' );
+	});
+	
+	$('#table_test').on('change', '.btn-toggle', function()
+	{
+		var table_list = [];
+		$('#table_test .btn-toggle').each(function()
+		{
+			if($(this).attr('value') == 1)
+				table_list.push($(this).find('span').text());
+		});
+		if(table_list.length == 0)
+			$('#table_list').text('(none)');
+		else
+			$('#table_list').text( table_list.join(', ') );
+	});
+	
+	$('#list_test').on('change', '.btn-toggle', function()
+	{
+		var ul_list = [];
+		$('#list_test .btn-toggle').each(function()
+		{
+			if($(this).attr('value') == 1)
+				ul_list.push($(this).find('span').text().replace('Item ',''));
+		});
+		if(ul_list.length == 0)
+			$('#ul_list').text('(none)');
+		else
+			$('#ul_list').text( ul_list.join(', ') );
 	});
 });
 </script>
 </head>
 <body>
-<h1>Toggle Button Test</h1>
-<button class="btn-toggle" value="0"><span>Click Me</span></button>
-<p>The button is <span id="status"> Off </span></p>
+<h1>Button Toggle Demo</h1>
+<h2>Toggle Button Test</h2>
+<button class="btn-toggle on" id="button_test_left"><span>Click Me</span></button>
+<button class="btn-toggle right" id="button_test_right"><span>And Me</span></button>
+<p>The left button is <span id="button_left">On</span> and the right button is <span id="button_right">Off</span></p>
+<br>
+
+<h2>Table Row Test</h2>
+<table id="table_test" width="200px" border="1" cellpadding="0" cellspacing="0">
+	<thead>
+	<tr>
+		<td>Users</td>
+		<td>Dept</td>
+	</tr>
+	</thead>
+	<tbody>
+	<tr class="btn-toggle">
+		<td><span>Chris</span></td>
+		<td>Admin</td>
+	</tr>
+	<tr class="btn-toggle">
+		<td><span>Dave</span></td>
+		<td>Sales</td>
+	</tr>
+	<tr class="btn-toggle">
+		<td><span>Mark</span></td>
+		<td>Warehouse</td>
+	</tr>
+	<tr class="btn-toggle">
+		<td><span>Steve</span></td>
+		<td>Sales</td>
+	</tr>
+	</tbody>
+</table>
+<p>Selected Users: <span id="table_list"> (None) </span></p>
+<br>
+
+<h2>List Item Test</h2>
+<ul id="list_test" style="list-style:none;">
+	<li class="btn-toggle"><span>Item 1</span></li>
+	<li class="btn-toggle"><span>Item 2</span></li>
+	<li class="btn-toggle"><span>Item 3</span></li>
+</ul>
+
+<p>Selected Items: <span id="ul_list"> (None) </span></p>
+<br>
+
 </body>
 </html>
